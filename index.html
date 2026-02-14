@@ -1009,7 +1009,7 @@
                     <div class="letter-back">
                         <img src="img/foto1.jpg" alt="B">
                         <div class="letter-overlay">
-                            <p class="letter-message">Belleza infinita que ilumina cada rincón de mi vida...</p>
+                            <p class="letter-message">Belleza infinita que ilumina cada rincón de mi vida desde el momento en que apareciste</p>
                         </div>
                     </div>
                 </div>
@@ -1022,7 +1022,7 @@
                     <div class="letter-back">
                         <img src="img/foto2.jpg" alt="I">
                         <div class="letter-overlay">
-                            <p class="letter-message">Inspiración de cada uno de mis días contigo...</p>
+                            <p class="letter-message">Inspiración constante de cada uno de mis días, luz que guía mis pasos</p>
                         </div>
                     </div>
                 </div>
@@ -1035,7 +1035,7 @@
                     <div class="letter-back">
                         <img src="img/foto3.jpg" alt="E">
                         <div class="letter-overlay">
-                            <p class="letter-message">Eterna gratitud por cada momento juntos...</p>
+                            <p class="letter-message">Eterna gratitud por cada momento compartido, cada risa y cada abrazo</p>
                         </div>
                     </div>
                 </div>
@@ -1048,7 +1048,7 @@
                     <div class="letter-back">
                         <img src="img/foto4.jpg" alt="N">
                         <div class="letter-overlay">
-                            <p class="letter-message">Nunca imaginé sentirme tan completo...</p>
+                            <p class="letter-message">Nunca imaginé poder sentirme tan completo, tan vivo, tan amado</p>
                         </div>
                     </div>
                 </div>
@@ -1061,7 +1061,7 @@
                     <div class="letter-back">
                         <img src="img/foto5.jpg" alt="V">
                         <div class="letter-overlay">
-                            <p class="letter-message">Verte sonreír es mi motivación diaria...</p>
+                            <p class="letter-message">Verte sonreír es mi motivación diaria y mi felicidad más grande</p>
                         </div>
                     </div>
                 </div>
@@ -1074,7 +1074,7 @@
                     <div class="letter-back">
                         <img src="img/foto6.jpg" alt="E">
                         <div class="letter-overlay">
-                            <p class="letter-message">Eres mi persona favorita en el mundo...</p>
+                            <p class="letter-message">Eres mi persona favorita en todo el mundo, mi confidente y mi hogar</p>
                         </div>
                     </div>
                 </div>
@@ -1087,7 +1087,7 @@
                     <div class="letter-back">
                         <img src="img/foto7.jpg" alt="N">
                         <div class="letter-overlay">
-                            <p class="letter-message">Nada se compara a estar contigo...</p>
+                            <p class="letter-message">Nada en este mundo se compara a la paz que siento estando contigo</p>
                         </div>
                     </div>
                 </div>
@@ -1100,7 +1100,7 @@
                     <div class="letter-back">
                         <img src="img/foto8.jpg" alt="I">
                         <div class="letter-overlay">
-                            <p class="letter-message">Increíble lo mucho que me enamoras...</p>
+                            <p class="letter-message">Increíble lo mucho que logras enamorarme cada día un poco más</p>
                         </div>
                     </div>
                 </div>
@@ -1113,7 +1113,7 @@
                     <div class="letter-back">
                         <img src="img/foto9.jpg" alt="D">
                         <div class="letter-overlay">
-                            <p class="letter-message">Dueña de mis pensamientos y sueños...</p>
+                            <p class="letter-message">Dueña absoluta de mis pensamientos y protagonista de mis mejores sueños</p>
                         </div>
                     </div>
                 </div>
@@ -1126,7 +1126,7 @@
                     <div class="letter-back">
                         <img src="img/foto10.jpg" alt="A">
                         <div class="letter-overlay">
-                            <p class="letter-message">Amor verdadero que transforma mi vida...</p>
+                            <p class="letter-message">Amor verdadero de esos que transforman, inspiran y perduran para siempre</p>
                         </div>
                     </div>
                 </div>
@@ -1147,7 +1147,7 @@
                     <div class="letter-back">
                         <img src="img/foto11.jpg" alt="A">
                         <div class="letter-overlay">
-                            <p class="letter-message">Admiro todo lo que eres y haces...</p>
+                            <p class="letter-message">Admiro profundamente todo lo que eres, tu fuerza, tu risa y tu corazón</p>
                         </div>
                     </div>
                 </div>
@@ -1160,7 +1160,7 @@
                     <div class="letter-back">
                         <img src="img/foto12.jpg" alt="M">
                         <div class="letter-overlay">
-                            <p class="letter-message">Mi lugar favorito es donde estés tú...</p>
+                            <p class="letter-message">Mi lugar favorito en el universo entero es donde sea que estés tú</p>
                         </div>
                     </div>
                 </div>
@@ -1173,7 +1173,7 @@
                     <div class="letter-back">
                         <img src="img/foto13.jpg" alt="O">
                         <div class="letter-overlay">
-                            <p class="letter-message">Ojalá veas lo especial que eres...</p>
+                            <p class="letter-message">Ojalá pudieras ver lo increíblemente especial que eres a través de mis ojos</p>
                         </div>
                     </div>
                 </div>
@@ -1186,7 +1186,7 @@
                     <div class="letter-back">
                         <img src="img/foto14.jpg" alt="R">
                         <div class="letter-overlay">
-                            <p class="letter-message">Razón de todas mis alegrías...</p>
+                            <p class="letter-message">Razón de todas mis alegrías y compañera perfecta en este camino</p>
                         </div>
                     </div>
                 </div>
@@ -1224,11 +1224,49 @@
     <script>
         // Revelar foto al hacer clic en la letra
         function revealPhoto(card) {
+            // Si ya está revelada, permitir cerrarla
             if (card.classList.contains('revealed')) {
-                return; // Ya está revelada, no hacer nada
+                const overlay = card.querySelector('.letter-overlay');
+                
+                // Toggle del overlay
+                if (overlay.style.opacity === '1' && overlay.style.zIndex === '25') {
+                    // Cerrar
+                    overlay.style.opacity = '0';
+                    overlay.style.zIndex = '1';
+                    card.style.zIndex = '15';
+                } else {
+                    // Abrir (ocultar otros primero)
+                    document.querySelectorAll('.letter-overlay').forEach(o => {
+                        o.style.opacity = '0';
+                        o.style.zIndex = '1';
+                    });
+                    document.querySelectorAll('.letter-card').forEach(c => {
+                        if (c.classList.contains('revealed')) {
+                            c.style.zIndex = '15';
+                        }
+                    });
+                    
+                    // Mostrar este
+                    overlay.style.opacity = '1';
+                    overlay.style.zIndex = '25';
+                    card.style.zIndex = '30';
+                }
+                return;
             }
             
+            // Primera vez: revelar la foto
             card.classList.add('revealed');
+            
+            // Ocultar otros overlays
+            document.querySelectorAll('.letter-overlay').forEach(o => {
+                o.style.opacity = '0';
+                o.style.zIndex = '1';
+            });
+            document.querySelectorAll('.letter-card').forEach(c => {
+                if (c.classList.contains('revealed')) {
+                    c.style.zIndex = '15';
+                }
+            });
             
             // Pequeña explosión de corazones al revelar
             const rect = card.getBoundingClientRect();
@@ -1246,36 +1284,22 @@
                 
                 setTimeout(() => heart.remove(), 3000);
             }
+            
+            // Auto-mostrar el mensaje después de revelar
+            setTimeout(() => {
+                const overlay = card.querySelector('.letter-overlay');
+                overlay.style.opacity = '1';
+                overlay.style.zIndex = '25';
+                card.style.zIndex = '30';
+            }, 800);
         }
         
         // Detectar si es dispositivo táctil
         const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
         
         if (isTouchDevice) {
-            // En móviles, mostrar mensaje al tocar una carta revelada
-            document.addEventListener('click', function(e) {
-                const card = e.target.closest('.letter-card');
-                if (card && card.classList.contains('revealed')) {
-                    const overlay = card.querySelector('.letter-overlay');
-                    if (overlay) {
-                        // Toggle del overlay
-                        if (overlay.style.opacity === '1') {
-                            overlay.style.opacity = '0';
-                            overlay.style.zIndex = '1';
-                        } else {
-                            // Ocultar otros overlays
-                            document.querySelectorAll('.letter-overlay').forEach(o => {
-                                o.style.opacity = '0';
-                                o.style.zIndex = '1';
-                            });
-                            // Mostrar este overlay
-                            overlay.style.opacity = '1';
-                            overlay.style.zIndex = '25';
-                            card.style.zIndex = '30';
-                        }
-                    }
-                }
-            });
+            // En móviles, el mismo comportamiento al tocar
+            // Ya está manejado en la función revealPhoto
         }
         
         // Efecto de brillos al pasar el mouse sobre las letras
