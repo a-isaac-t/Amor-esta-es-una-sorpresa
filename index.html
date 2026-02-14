@@ -932,6 +932,129 @@
                 -moz-osx-font-smoothing: grayscale;
             }
         }
+        
+        /* Modo celebración - Efectos especiales después de decir SÍ */
+        body.celebration-mode {
+            background: linear-gradient(135deg, #FFF0F5 0%, #FFE5E5 50%, #FFF5F7 100%);
+            animation: backgroundPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes backgroundPulse {
+            0%, 100% { 
+                filter: brightness(1);
+            }
+            50% { 
+                filter: brightness(1.05);
+            }
+        }
+        
+        body.celebration-mode .letter-card.revealed .letter-front {
+            background: linear-gradient(135deg, #FFD700, #FFF8DC, #FFD700);
+            border: 3px solid #D4AF37;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+            animation: goldenGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes goldenGlow {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(212, 175, 55, 0.6), 0 0 60px rgba(255, 215, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(212, 175, 55, 0.8), 0 0 100px rgba(255, 215, 0, 0.6);
+            }
+        }
+        
+        body.celebration-mode .big-letter {
+            background: linear-gradient(135deg, #D4AF37, #FFD700, #FFA500, #FFD700, #D4AF37);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: goldenShine 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
+        }
+        
+        @keyframes goldenShine {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        body.celebration-mode .letter-card {
+            box-shadow: 0 10px 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        body.celebration-mode .letter-card.revealed {
+            box-shadow: 0 15px 50px rgba(212, 175, 55, 0.5);
+        }
+        
+        body.celebration-mode .heart-separator-icon {
+            animation: heartBeatFast 0.8s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 107, 157, 0.8));
+        }
+        
+        @keyframes heartBeatFast {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.25);
+            }
+        }
+        
+        /* Confeti dorado */
+        body.celebration-mode .petals {
+            display: none;
+        }
+        
+        .golden-confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+            overflow: hidden;
+        }
+        
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            opacity: 0;
+            animation: confettiFall 4s linear infinite;
+        }
+        
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
 
         /* Detalles decorativos */
         .decorative-heart {
@@ -1199,14 +1322,14 @@
             <div class="question-content">
                 <h2>¿Q?</h2>
                 <p>¿Por qué...?</p>
-                <button class="heart-button" onclick="showQuestion()">Descubre la pregunta ❤️</button>
+                <button class="heart-button" onclick="reopenModal()">Descubre la pregunta ❤️</button>
             </div>
         </div>
     </div>
 
     <!-- Modal de pregunta -->
-    <div class="modal" id="modal">
-        <div class="modal-content">
+    <div class="modal" id="modal" onclick="closeModalOnOutsideClick(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <h2>💕</h2>
             <p style="font-size: 2rem; margin-bottom: 20px;">¿Quieres ser mi Valentín?</p>
             <p style="font-size: 1.2rem; margin-bottom: 30px;">Porque contigo, todos los días se sienten como San Valentín...</p>
@@ -1376,10 +1499,14 @@
             const modal = document.getElementById('modal');
             const modalContent = modal.querySelector('.modal-content');
             
+            // Activar modo celebración
+            document.body.classList.add('celebration-mode');
+            
             modalContent.innerHTML = `
                 <h2 style="font-size: 4rem;">💕💖💗</h2>
                 <p style="font-size: 2.5rem; font-weight: 600; color: var(--romantic-red);">¡Me haces el más feliz!</p>
                 <p style="font-size: 1.3rem; margin-top: 20px;">Este es solo el comienzo de nuestra historia de amor más bonita...</p>
+                <button class="heart-button" onclick="closeModal()" style="margin-top: 25px; background: linear-gradient(135deg, #D4AF37, #FFD700);">Cerrar ✨</button>
             `;
             
             createHeartsExplosion();
@@ -1393,6 +1520,38 @@
             setTimeout(() => {
                 clearInterval(interval);
             }, 10000);
+        }
+        
+        // Cerrar modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('active');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        function closeModalOnOutsideClick(event) {
+            if (event.target.id === 'modal') {
+                closeModal();
+            }
+        }
+        
+        // Abrir modal de nuevo (en caso de que se cierre)
+        function reopenModal() {
+            const modal = document.getElementById('modal');
+            if (document.body.classList.contains('celebration-mode')) {
+                // Si ya dijo que sí, mostrar el mensaje de felicidad
+                const modalContent = modal.querySelector('.modal-content');
+                modalContent.innerHTML = `
+                    <h2 style="font-size: 4rem;">💕💖💗</h2>
+                    <p style="font-size: 2.5rem; font-weight: 600; color: var(--romantic-red);">¡Me haces el más feliz!</p>
+                    <p style="font-size: 1.3rem; margin-top: 20px;">Este es solo el comienzo de nuestra historia de amor más bonita...</p>
+                    <button class="heart-button" onclick="closeModal()" style="margin-top: 25px; background: linear-gradient(135deg, #D4AF37, #FFD700);">Cerrar ✨</button>
+                `;
+                modal.classList.add('active');
+            } else {
+                // Si no, mostrar la pregunta original
+                showQuestion();
+            }
         }
 
         // Explosión de corazones pequeña
@@ -1434,6 +1593,58 @@
                 }, 3000);
             }
         }
+        
+        // Crear confeti dorado para el modo celebración
+        function createGoldenConfetti() {
+            // Crear contenedor si no existe
+            let confettiContainer = document.getElementById('goldenConfetti');
+            if (!confettiContainer) {
+                confettiContainer = document.createElement('div');
+                confettiContainer.id = 'goldenConfetti';
+                confettiContainer.className = 'golden-confetti';
+                document.body.appendChild(confettiContainer);
+            }
+            
+            // Crear piezas de confeti
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti-piece';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 4 + 's';
+                confetti.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                // Formas variadas
+                const shapes = ['square', 'circle', 'triangle'];
+                const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                if (shape === 'circle') {
+                    confetti.style.borderRadius = '50%';
+                } else if (shape === 'triangle') {
+                    confetti.style.width = '0';
+                    confetti.style.height = '0';
+                    confetti.style.borderLeft = '5px solid transparent';
+                    confetti.style.borderRight = '5px solid transparent';
+                    confetti.style.borderBottom = '10px solid #FFD700';
+                    confetti.style.background = 'transparent';
+                }
+                
+                confettiContainer.appendChild(confetti);
+            }
+        }
+        
+        // Activar confeti cuando se activa el modo celebración
+        const observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if (mutation.attributeName === 'class') {
+                    if (document.body.classList.contains('celebration-mode')) {
+                        createGoldenConfetti();
+                    }
+                }
+            });
+        });
+        
+        observer.observe(document.body, {
+            attributes: true
+        });
 
         // Efecto de paralaje suave
         document.addEventListener('mousemove', (e) => {
