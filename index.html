@@ -179,11 +179,11 @@
         .heart-separator-icon {
             font-size: 3rem;
             margin: 0 30px;
-            animation: heartBeat 1.5s ease-in-out infinite;
+            animation: Beat 1.5s ease-in-out infinite;
             filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.4));
         }
         
-        @keyframes heartBeat {
+        @keyframes Beat {
             0%, 100% {
                 transform: scale(1);
             }
@@ -807,8 +807,9 @@
             }
             
             .heart-button, .no-button {
-                padding: 12px 30px;
-                font-size: 1rem;
+                padding: 12px 20px;
+                font-size: 0.95rem;
+                white-space: nowrap; /* NUEVA LÍNEA - evita que el texto se rompa */
             }
         }
         
@@ -1302,4 +1303,5 @@
     </script>
 </body>
 </html>
+
 
