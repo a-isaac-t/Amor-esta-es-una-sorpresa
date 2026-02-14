@@ -131,12 +131,69 @@
 
         /* Grid de letras */
         .letters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1000px;
             margin-bottom: 60px;
+            align-items: center;
+        }
+        
+        .word-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 25px;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .word-row.bienvenida {
+            max-width: 900px;
+        }
+        
+        .word-row.amor {
+            max-width: 500px;
+        }
+        
+        .heart-separator {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+            position: relative;
+        }
+        
+        .heart-separator::before,
+        .heart-separator::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--soft-pink), transparent);
+            max-width: 200px;
+        }
+        
+        .heart-separator-icon {
+            font-size: 3rem;
+            margin: 0 30px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(255, 107, 157, 0.4));
+        }
+        
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(1);
+            }
+            75% {
+                transform: scale(1.15);
+            }
         }
 
         .letter-card {
@@ -589,9 +646,24 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .letters-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 20px;
+            .word-row {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 15px;
+            }
+            
+            .word-row.bienvenida,
+            .word-row.amor {
+                max-width: 100%;
+            }
+            
+            .heart-separator-icon {
+                font-size: 2.5rem;
+                margin: 0 20px;
+            }
+            
+            .heart-separator::before,
+            .heart-separator::after {
+                max-width: 100px;
             }
 
             .intro {
@@ -608,6 +680,22 @@
 
             .modal-content p {
                 font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .word-row {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                gap: 12px;
+            }
+            
+            .big-letter {
+                font-size: 5rem;
+            }
+            
+            .heart-separator-icon {
+                font-size: 2rem;
+                margin: 0 15px;
             }
         }
 
@@ -677,184 +765,195 @@
 
         <!-- Grid de letras con fotos -->
         <div class="letters-grid">
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">B</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
+            <!-- Primera palabra: BIENVENIDA -->
+            <div class="word-row bienvenida">
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">B</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto1.jpg" alt="B">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Porque desde el primer momento, mi corazón supo que eras especial...</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="letter-back">
-                    <img src="img/foto1.jpg" alt="B">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Porque desde el primer momento, mi corazón supo que eras especial...</p>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">I</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto2.jpg" alt="I">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Inspiración de mis días, luz en mis mañanas, sonrisa en mi alma...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">E</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto3.jpg" alt="E">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Eternamente agradecido por cada segundo a tu lado, por cada mirada compartida...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">N</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto4.jpg" alt="N">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Nunca imaginé que alguien podría hacerme sentir así, tan completo, tan vivo...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">V</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto5.jpg" alt="V">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Verte sonreír es mi motivación diaria, mi razón para ser mejor cada día...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">E</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto6.jpg" alt="E">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Eres mi persona favorita, mi confidente, mi mejor aventura...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">N</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto7.jpg" alt="N">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Nada se compara a la paz que siento cuando estamos juntos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">I</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto8.jpg" alt="I">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Increíble cómo cada día contigo es una nueva razón para enamorarme...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">D</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto9.jpg" alt="D">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Dueña de mis pensamientos, protagonista de mis sueños más bonitos...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">A</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto10.jpg" alt="A">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Amor verdadero, de esos que transforman, que inspiran, que perduran...</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">I</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto2.jpg" alt="I">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Inspiración de mis días, luz en mis mañanas, sonrisa en mi alma...</p>
-                    </div>
-                </div>
+            <!-- Separador con corazón -->
+            <div class="heart-separator">
+                <span class="heart-separator-icon">💕</span>
             </div>
 
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">E</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto3.jpg" alt="E">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Eternamente agradecido por cada segundo a tu lado, por cada mirada compartida...</p>
+            <!-- Segunda palabra: AMOR -->
+            <div class="word-row amor">
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">A</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto11.jpg" alt="A">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Admiro todo de ti, tu fuerza, tu risa, tu forma única de ver el mundo...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">N</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto4.jpg" alt="N">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Nunca imaginé que alguien podría hacerme sentir así, tan completo, tan vivo...</p>
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">M</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto12.jpg" alt="M">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Mi lugar favorito en el mundo es donde sea que estés tú...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">V</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto5.jpg" alt="V">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Verte sonreír es mi motivación diaria, mi razón para ser mejor cada día...</p>
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">O</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
+                    </div>
+                    <div class="letter-back">
+                        <img src="img/foto13.jpg" alt="O">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Ojalá puedas ver lo especial que eres a través de mis ojos...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">E</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto6.jpg" alt="E">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Eres mi persona favorita, mi confidente, mi mejor aventura...</p>
+                <div class="letter-card" onclick="revealPhoto(this)">
+                    <div class="letter-front">
+                        <div class="big-letter">R</div>
+                        <p class="tap-hint">Toca para revelar ❤️</p>
                     </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">N</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto7.jpg" alt="N">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Nada se compara a la paz que siento cuando estamos juntos...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">I</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto8.jpg" alt="I">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Increíble cómo cada día contigo es una nueva razón para enamorarme...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">D</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto9.jpg" alt="D">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Dueña de mis pensamientos, protagonista de mis sueños más bonitos...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">A</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto10.jpg" alt="A">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Amor verdadero, de esos que transforman, que inspiran, que perduran...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">A</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto11.jpg" alt="A">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Admiro todo de ti, tu fuerza, tu risa, tu forma única de ver el mundo...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">M</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto12.jpg" alt="M">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Mi lugar favorito en el mundo es donde sea que estés tú...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">O</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto13.jpg" alt="O">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Ojalá puedas ver lo especial que eres a través de mis ojos...</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="letter-card" onclick="revealPhoto(this)">
-                <div class="letter-front">
-                    <div class="big-letter">R</div>
-                    <p class="tap-hint">Toca para revelar ❤️</p>
-                </div>
-                <div class="letter-back">
-                    <img src="img/foto14.jpg" alt="R">
-                    <div class="letter-overlay">
-                        <p class="letter-message">Razón de mis alegrías, compañera de este hermoso camino llamado vida...</p>
+                    <div class="letter-back">
+                        <img src="img/foto14.jpg" alt="R">
+                        <div class="letter-overlay">
+                            <p class="letter-message">Razón de mis alegrías, compañera de este hermoso camino llamado vida...</p>
+                        </div>
                     </div>
                 </div>
             </div>
