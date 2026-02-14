@@ -150,10 +150,12 @@
         
         .word-row.bienvenida {
             max-width: 900px;
+            grid-template-columns: repeat(5, 1fr);
         }
         
         .word-row.amor {
-            max-width: 500px;
+            max-width: 700px;
+            grid-template-columns: repeat(4, 1fr);
         }
         
         .heart-separator {
@@ -647,12 +649,16 @@
         /* Responsive */
         @media (max-width: 768px) {
             .word-row {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
                 gap: 15px;
             }
             
-            .word-row.bienvenida,
+            .word-row.bienvenida {
+                grid-template-columns: repeat(5, 1fr);
+                max-width: 100%;
+            }
+            
             .word-row.amor {
+                grid-template-columns: repeat(4, 1fr);
                 max-width: 100%;
             }
             
@@ -684,13 +690,22 @@
         }
         
         @media (max-width: 480px) {
-            .word-row {
-                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-                gap: 12px;
+            .word-row.bienvenida {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+            }
+            
+            .word-row.amor {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
             }
             
             .big-letter {
-                font-size: 5rem;
+                font-size: 4.5rem;
+            }
+            
+            .tap-hint {
+                font-size: 0.85rem;
             }
             
             .heart-separator-icon {
